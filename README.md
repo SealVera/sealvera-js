@@ -14,13 +14,13 @@ SealVera gives every AI decision a cryptographically-sealed, immutable audit log
 
 ## Why SealVera?
 
-- 🔒 **Tamper-evident logs** — every decision is cryptographically hashed and chained; any tampering is detectable
-- ⚡ **2-line integration** — `init()` + `patchOpenAI()` and every LLM call is logged automatically
-- 🧠 **Explainability built-in** — captures inputs, outputs, reasoning, confidence scores, and model used
-- 📊 **Real-time dashboard** — search, filter, and export your full AI decision history
-- 🚨 **Drift detection** — get alerted when agent behaviour deviates from its baseline
-- 🌐 **Works with any LLM** — OpenAI, Anthropic Claude, Google Gemini, Ollama, LangChain, and more
-- 🪶 **Zero dependencies** — lightweight, no bloat, no vendor lock-in
+- **Tamper-evident logs** — every decision is cryptographically hashed and chained; any tampering is detectable
+- **2-line integration** — `init()` + `patchOpenAI()` and every LLM call is logged automatically
+- **Explainability built-in** — captures inputs, outputs, reasoning, confidence scores, and model used
+- **Real-time dashboard** — search, filter, and export your full AI decision history
+- **Drift detection** — get alerted when agent behaviour deviates from its baseline
+- **Works with any LLM** — OpenAI, Anthropic Claude, Google Gemini, Ollama, LangChain, and more
+- **Zero dependencies** — lightweight, no bloat, no vendor lock-in
 
 ---
 
@@ -40,9 +40,9 @@ const { OpenAI } = require('openai');
 
 // 1. Initialize once (e.g. in your app entry point)
 SealVera.init({
-  endpoint: 'https://app.sealvera.com',
-  apiKey: process.env.SEALVERA_API_KEY,
-  agent: 'payment-agent'
+ endpoint: 'https://app.sealvera.com',
+ apiKey: process.env.SEALVERA_API_KEY,
+ agent: 'payment-agent'
 });
 
 // 2. Patch your LLM client — all calls are logged automatically
@@ -51,10 +51,10 @@ SealVera.patchOpenAI(OpenAI);
 
 // 3. Use your LLM normally — nothing else changes
 const response = await openai.chat.completions.create({
-  model: 'gpt-4o',
-  messages: [{ role: 'user', content: 'Should I approve this $5,000 payment?' }]
+ model: 'gpt-4o',
+ messages: [{ role: 'user', content: 'Should I approve this $5,000 payment?' }]
 });
-// ✅ Decision logged, hashed, and stored in your SealVera audit trail
+// Decision logged, hashed, and stored in your SealVera audit trail
 ```
 
 Get your API key at **[app.sealvera.com](https://app.sealvera.com)**.
@@ -65,13 +65,13 @@ Get your API key at **[app.sealvera.com](https://app.sealvera.com)**.
 
 | Provider | Method | Auto-patch |
 |---|---|---|
-| OpenAI (GPT-4o, GPT-4, GPT-3.5) | `patchOpenAI(OpenAI)` | ✅ |
-| Anthropic Claude | `patchAnthropic(anthropic)` | ✅ |
-| Google Gemini | `patchGemini(genAI)` | ✅ |
-| Ollama (local models) | `patchOllama(ollama)` | ✅ |
-| OpenRouter | `patchOpenRouter(client)` | ✅ |
-| Any LLM / custom agent | `wrap({ fn })` | ✅ |
-| LangChain | `SealVeraCallbackHandler` | ✅ |
+| OpenAI (GPT-4o, GPT-4, GPT-3.5) | `patchOpenAI(OpenAI)` | |
+| Anthropic Claude | `patchAnthropic(anthropic)` | |
+| Google Gemini | `patchGemini(genAI)` | |
+| Ollama (local models) | `patchOllama(ollama)` | |
+| OpenRouter | `patchOpenRouter(client)` | |
+| Any LLM / custom agent | `wrap({ fn })` | |
+| LangChain | `SealVeraCallbackHandler` | |
 
 ---
 
@@ -83,10 +83,10 @@ Initialize the SDK. Call once at application startup.
 
 ```javascript
 SealVera.init({
-  endpoint: 'https://app.sealvera.com', // SealVera server URL (required)
-  apiKey: 'sv_...',                      // API key from your dashboard (required)
-  agent: 'payment-agent',               // Default agent name for all logs
-  debug: false                           // Enable verbose debug logging (optional)
+ endpoint: 'https://app.sealvera.com', // SealVera server URL (required)
+ apiKey: 'sv_...', // API key from your dashboard (required)
+ agent: 'payment-agent', // Default agent name for all logs
+ debug: false // Enable verbose debug logging (optional)
 });
 ```
 
@@ -103,8 +103,8 @@ SealVera.patchOpenAI(OpenAI);
 const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 // Every call is now automatically audited — model, prompt, response, latency, tokens
 const response = await openai.chat.completions.create({
-  model: 'gpt-4o',
-  messages: [{ role: 'user', content: 'Approve this loan application?' }]
+ model: 'gpt-4o',
+ messages: [{ role: 'user', content: 'Approve this loan application?' }]
 });
 ```
 
@@ -120,11 +120,11 @@ const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 SealVera.patchAnthropic(anthropic);
 
 const message = await anthropic.messages.create({
-  model: 'claude-3-5-sonnet-20241022',
-  max_tokens: 1024,
-  messages: [{ role: 'user', content: 'Review this insurance claim.' }]
+ model: 'claude-3-5-sonnet-20241022',
+ max_tokens: 1024,
+ messages: [{ role: 'user', content: 'Review this insurance claim.' }]
 });
-// ✅ Logged automatically
+// Logged automatically
 ```
 
 ---
@@ -140,7 +140,7 @@ SealVera.patchGemini(genAI);
 
 const model = genAI.getGenerativeModel({ model: 'gemini-1.5-pro' });
 const result = await model.generateContent('Summarise this contract.');
-// ✅ Logged automatically
+// Logged automatically
 ```
 
 ---
@@ -155,10 +155,10 @@ const ollama = new Ollama();
 SealVera.patchOllama(ollama);
 
 const response = await ollama.chat({
-  model: 'llama3.2',
-  messages: [{ role: 'user', content: 'Classify this support ticket.' }]
+ model: 'llama3.2',
+ messages: [{ role: 'user', content: 'Classify this support ticket.' }]
 });
-// ✅ Logged automatically — even for on-prem/air-gapped deployments
+// Logged automatically — even for on-prem/air-gapped deployments
 ```
 
 ---
@@ -169,13 +169,13 @@ Wrap any agent function. Captures input, output, inferred decision, and timing.
 
 ```javascript
 const result = await SealVera.wrap({
-  agent: 'fraud-detector',
-  action: 'evaluate_transaction',
-  input: { amount: 9800, currency: 'USD', merchant: 'Unknown Corp' },
-  fn: async () => {
-    // Your agent logic — LLM call, rules engine, ML model, anything
-    return { decision: 'FLAGGED', reason: 'Amount near reporting threshold', confidence: 0.91 };
-  }
+ agent: 'fraud-detector',
+ action: 'evaluate_transaction',
+ input: { amount: 9800, currency: 'USD', merchant: 'Unknown Corp' },
+ fn: async () => {
+ // Your agent logic — LLM call, rules engine, ML model, anything
+ return { decision: 'FLAGGED', reason: 'Amount near reporting threshold', confidence: 0.91 };
+ }
 });
 // result logged with decision: "FLAGGED"
 ```
@@ -190,11 +190,11 @@ Pre-capture LLM parameters for enriched logging. Call immediately before your LL
 
 ```javascript
 const params = {
-  model: 'gpt-4o',
-  messages: [
-    { role: 'system', content: 'You are a compliance review agent...' },
-    { role: 'user', content: JSON.stringify(document) }
-  ]
+ model: 'gpt-4o',
+ messages: [
+ { role: 'system', content: 'You are a compliance review agent...' },
+ { role: 'user', content: JSON.stringify(document) }
+ ]
 };
 
 SealVera.capture(params); // ← one extra line
@@ -212,12 +212,12 @@ const { ChatOpenAI } = require('@langchain/openai');
 SealVera.init({ endpoint: 'https://app.sealvera.com', apiKey: process.env.SEALVERA_API_KEY });
 
 const model = new ChatOpenAI({
-  modelName: 'gpt-4o',
-  callbacks: [new SealVeraCallbackHandler({ agent: 'langchain-agent' })]
+ modelName: 'gpt-4o',
+ callbacks: [new SealVeraCallbackHandler({ agent: 'langchain-agent' })]
 });
 
 const response = await model.invoke('Review this contract for compliance risks.');
-// ✅ Full LangChain chain logged — every step, tool call, and final decision
+// Full LangChain chain logged — every step, tool call, and final decision
 ```
 
 ---
@@ -234,9 +234,9 @@ Or in `package.json`:
 
 ```json
 {
-  "scripts": {
-    "start": "node -r sealvera/autoload server.js"
-  }
+ "scripts": {
+ "start": "node -r sealvera/autoload server.js"
+ }
 }
 ```
 
@@ -256,29 +256,29 @@ For the richest audit trail and best compliance posture, return structured decis
 
 ```javascript
 const result = await SealVera.wrap({
-  agent: 'underwriting-agent',
-  action: 'evaluate_loan',
-  input: application,
-  fn: async () => {
-    const response = await openai.chat.completions.create({
-      model: 'gpt-4o',
-      response_format: { type: 'json_object' },
-      messages: [{
-        role: 'system',
-        content: `You are a loan underwriting agent. Evaluate applications and return JSON:
-          {
-            "decision": "APPROVED" | "REJECTED" | "FLAGGED",
-            "reason": "plain-English explanation for the applicant",
-            "confidence": 0.0–1.0,
-            "risk_factors": ["factor1", "factor2"]
-          }`
-      }, {
-        role: 'user',
-        content: JSON.stringify(application)
-      }]
-    });
-    return JSON.parse(response.choices[0].message.content);
-  }
+ agent: 'underwriting-agent',
+ action: 'evaluate_loan',
+ input: application,
+ fn: async () => {
+ const response = await openai.chat.completions.create({
+ model: 'gpt-4o',
+ response_format: { type: 'json_object' },
+ messages: [{
+ role: 'system',
+ content: `You are a loan underwriting agent. Evaluate applications and return JSON:
+ {
+ "decision": "APPROVED" | "REJECTED" | "FLAGGED",
+ "reason": "plain-English explanation for the applicant",
+ "confidence": 0.0–1.0,
+ "risk_factors": ["factor1", "factor2"]
+ }`
+ }, {
+ role: 'user',
+ content: JSON.stringify(application)
+ }]
+ });
+ return JSON.parse(response.choices[0].message.content);
+ }
 });
 
 // result.decision = "APPROVED" | "REJECTED" | "FLAGGED"
@@ -328,10 +328,10 @@ SealVera.init({ endpoint: 'http://your-server:3000', apiKey: 'sv_...' });
 
 ## Links
 
-- 🌐 **Dashboard & signup** — [app.sealvera.com](https://app.sealvera.com)
-- 📖 **Full documentation** — [app.sealvera.com/docs](https://app.sealvera.com/docs)
-- 🐍 **Python SDK** — [github.com/sealvera/sealvera-python](https://github.com/sealvera/sealvera-python)
-- 💬 **Support** — [hello@sealvera.com](mailto:hello@sealvera.com)
+- **Dashboard & signup** — [app.sealvera.com](https://app.sealvera.com)
+- **Full documentation** — [app.sealvera.com/docs](https://app.sealvera.com/docs)
+- **Python SDK** — [github.com/sealvera/sealvera-python](https://github.com/sealvera/sealvera-python)
+- **Support** — [hello@sealvera.com](mailto:hello@sealvera.com)
 
 ---
 
