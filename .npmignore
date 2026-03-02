@@ -1,0 +1,17 @@
+# Dev files
+test/
+tests/
+examples/
+*.test.js
+*.spec.js
+.eslintrc*
+.prettierrc*
+jest.config.*
+
+# Misc
+.DS_Store
+*.log
+.env
+.env.*
+node_modules/
+coverage/

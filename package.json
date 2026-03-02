@@ -1,0 +1,91 @@
+{
+  "name": "sealvera",
+  "version": "0.1.0",
+  "description": "AI compliance infrastructure — tamper-evident audit trail for AI agents in regulated industries",
+  "main": "index.js",
+  "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "require": "./index.js",
+      "import": "./index.js",
+      "types": "./index.d.ts"
+    },
+    "./autoload": "./scripts/autoload.js"
+  },
+  "scripts": {
+    "test": "node test/index.test.js",
+    "test:smoke": "node -e \"const SealVera = require('.'); const keys = Object.keys(SealVera); const required = ['init','createClient','patchOpenAI','patchAnthropic','patchOpenRouter','trace','wrap']; const missing = required.filter(k => !keys.includes(k)); if (missing.length) { console.error('Missing exports:', missing); process.exit(1); } console.log('Smoke test passed. Exports:', keys.join(', '));\"",
+    "prepublishOnly": "npm run test:smoke"
+  },
+  "files": [
+    "index.js",
+    "index.d.ts",
+    "src/",
+    "scripts/",
+    "README.md",
+    "LICENSE"
+  ],
+  "keywords": [
+    "sealvera",
+    "ai-audit",
+    "ai-compliance",
+    "llm-audit",
+    "ai-logging",
+    "audit-trail",
+    "tamper-evident",
+    "explainability",
+    "ai-explainability",
+    "openai",
+    "anthropic",
+    "gemini",
+    "ollama",
+    "langchain",
+    "compliance",
+    "decision-logging",
+    "llm",
+    "eu-ai-act",
+    "ai-governance",
+    "observability",
+    "ai-observability",
+    "llm-observability",
+    "ai-agent",
+    "agentic-ai",
+    "hipaa",
+    "gdpr",
+    "soc2",
+    "fintech",
+    "regulated-ai",
+    "responsible-ai"
+  ],
+  "author": "SealVera <hello@sealvera.dev>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sealvera/sealvera-js"
+  },
+  "homepage": "https://app.sealvera.com/docs",
+  "bugs": {
+    "url": "https://github.com/sealvera/sealvera-js/issues"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "uuid": "^9.0.0"
+  },
+  "peerDependencies": {
+    "@anthropic-ai/sdk": ">=0.18.0",
+    "openai": ">=4.0.0"
+  },
+  "peerDependenciesMeta": {
+    "openai": {
+      "optional": true
+    },
+    "@anthropic-ai/sdk": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  }
+}
