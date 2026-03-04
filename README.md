@@ -326,10 +326,33 @@ SealVera.init({ endpoint: 'http://your-server:3000', apiKey: 'sv_...' });
 
 ---
 
+## Claude Code Integration
+
+Log every Claude Code agent session to SealVera automatically — tool calls, file edits, bash commands, and session outcomes — with one wrapper command.
+
+```bash
+# Install the Claude Code integration
+npm install -g sealvera-claude
+
+# Configure (interactive)
+sealvera-claude init
+
+# Wrap any claude command — all decisions logged to SealVera
+sealvera-claude wrap "build me a REST API"
+sealvera-claude wrap --model claude-opus-4-5 "refactor this codebase"
+```
+
+Every tool invocation, file write, and shell command appears in your SealVera dashboard with a full cryptographic audit trail.
+
+See the [Claude Code integration guide](https://app.sealvera.com/integrations/claude-code) and the [sealvera-claude npm package](https://www.npmjs.com/package/sealvera-claude) for full setup instructions.
+
+---
+
 ## Links
 
 - **Dashboard & signup** — [app.sealvera.com](https://app.sealvera.com)
 - **Full documentation** — [app.sealvera.com/docs](https://app.sealvera.com/docs)
+- **Claude Code integration** — [sealvera-claude on npm](https://www.npmjs.com/package/sealvera-claude)
 - **Python SDK** — [github.com/sealvera/sealvera-python](https://github.com/sealvera/sealvera-python)
 - **Support** — [hello@sealvera.com](mailto:hello@sealvera.com)
 
